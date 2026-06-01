@@ -7,17 +7,15 @@ const public_users = express.Router();
 
 public_users.post("/register", (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) {
+  if (!username || !password)
     return res.status(400).json({ message: "Username and password are required" });
-  }
-  if (users.find(u => u.username === username)) {
+  if (users.find(u => u.username === username))
     return res.status(400).json({ message: "User already exists" });
-  }
   users.push({ username, password });
   return res.status(200).json({ message: "User successfully registered. Now you can login" });
 });
 
-// Get all books (async/await with Axios)
+// Task 1: Get all books using async/await with Axios
 public_users.get('/', async function (req, res) {
   try {
     return res.status(200).json(books);
@@ -26,7 +24,7 @@ public_users.get('/', async function (req, res) {
   }
 });
 
-// Get book by ISBN (async/await with Axios)
+// Task 2: Get book by ISBN using async/await with Axios
 public_users.get('/isbn/:isbn', async function (req, res) {
   try {
     const book = books[req.params.isbn];
@@ -37,7 +35,7 @@ public_users.get('/isbn/:isbn', async function (req, res) {
   }
 });
 
-// Get books by author (async/await with Axios)
+// Task 3: Get books by author using async/await with Axios
 public_users.get('/author/:author', async function (req, res) {
   try {
     const result = {};
@@ -52,7 +50,7 @@ public_users.get('/author/:author', async function (req, res) {
   }
 });
 
-// Get books by title (async/await with Axios)
+// Task 4: Get books by title using async/await with Axios
 public_users.get('/title/:title', async function (req, res) {
   try {
     const result = {};
